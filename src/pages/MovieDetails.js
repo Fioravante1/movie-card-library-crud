@@ -8,6 +8,25 @@ import { Loading } from '../components';
 // import { Loading } from '../components';
 
 class MovieDetails extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movie: [],
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
+    getMovie(id).then((movie) => {
+      this.setState({
+        movie,
+        loading: false,
+      });
+    });
+  }
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
