@@ -17,6 +17,16 @@ class EditMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
+    getMovie(id).then((movie) => {
+      this.setState({
+        status: 'loadingFinished',
+        movie,
+      });
+    });
+  }
+
   handleSubmit(updatedMovie) {
     return {
       movieAPI,
