@@ -28,10 +28,11 @@ class EditMovie extends Component {
   }
 
   handleSubmit(updatedMovie) {
-    return {
-      movieAPI,
-      updatedMovie,
-    };
+    updateMovie(updatedMovie).then(() => {
+      this.setState({
+        shouldRedirect: true,
+      });
+    });
   }
 
   render() {
